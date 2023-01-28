@@ -83,11 +83,15 @@ int main(void)
             }
             else
             {
-                char d;
+                int d;
                 char texto;
                 //char* ptexto = &texto;
-                d = readString('@', &texto);
-                printString(&texto);
+                d = readString('@', &texto, c);
+                char* revtexto = &texto+d;
+                d = invString(d, &texto, revtexto);
+                char* numtexto = revtexto+d;
+                d = numString(d, revtexto, numtexto);
+                printString(numtexto);
             }
         }
     }
