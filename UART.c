@@ -84,23 +84,49 @@ extern int invString(int dim, char *string, char *inv)
 extern int numString(int dim, char *string, char *numst)
 {
     //int i = dim*2 + 1;
-    int i = 0;
-    int j = 0;
-    while(dim >= j)
+    int i = 0, j = 0, k;
+    short unsigned int par = 1;
+    while(dim > j)
     {
-        if(i%2 == 0)
+        //if(i%2 != 1)
+        if(par != 0)
         {
             *(numst+i) = *(string+j);
             i++;
+            par = 0;
         }
         else
         {
             j++;
-            *(numst+i) = j;
-            i++;
+            //*(numst+i) = j;
+            k = NumToChar(j, numst+i);
+            /*if(k%2 != 1)
+            {
+                k++;
+            }*/
+            i = i + k;
+            par = 1;
         }
     }
     return i;
+}
+
+extern int NumToChar(int g, char *pstring)
+{
+    int i = 1, k = 0, h = g;
+    while(h/10 > 0)
+    {
+        i++;
+        h = h/10;
+    }
+    for(int j = i; j > 0; j--)
+    { 
+        int u = pow(10,(j-1));
+        *(pstring+k) = (g / u) + 48;
+        k++;
+        g = g - u*(g/u);
+    }
+    return k;
 }
 
 /*

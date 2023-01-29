@@ -8,5 +8,6 @@ extern void printString(char *string);
 extern int readString(char delimitador, char *string, char rc);
 extern int invString(int dim, char *string, char *inv);
 extern int numString(int dim, char *string, char *numst);
+extern int NumToChar(int g, char *string);
 
 #endif /* UART_UART_H_ */
